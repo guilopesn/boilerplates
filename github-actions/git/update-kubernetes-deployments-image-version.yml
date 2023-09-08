@@ -1,0 +1,59 @@
+name: Updates Kubernetes Deployment's Image Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'New image version'
+        required: true
+        type: text
+
+jobs:
+  update_image_version:
+    name: Updates Kubernetes Deployment's Image Version
+    runs-on: ubuntu-latest
+    env:
+      REPOSITORY: example/devops
+      DEPLOYMENT_FILE_PATH: prod/app/api/deployment.yaml
+      ACTOR_NAME: Actor
+      ACTOR_EMAIL: actor@example.com
+      ACTOR_TOKEN: ${{ secrets.GHA_ACTOR_TOKEN }}
+      COMMIT_MESSAGE: "ci: updates api production deployments image version"
+    steps:
+      - id: checkout_repository
+        name: Checkout repository
+        uses: actions/checkout@v2
+
+      - id: checkout_devops_repository
+        name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ env.REPOSITORY }}
+          token: ${{ env.ACTOR_TOKEN }}
+          ref: master
+
+      - id: update_production_image_version
+        name: Updates API Production deployment's image version
+        run: |
+          OLD_VERSION=`cat ${{ env.DEPLOYMENT_FILE_PATH }} | grep -Eo '^.*.image\:.*' | grep -Eo '[^:]*$'`
+
+          echo "Old version: ${OLD_VERSION}"
+
+          NEW_VERSION=${{ inputs.version }}
+
+          echo "New version ${NEW_VERSION}"
+
+          sed -i "s/${OLD_VERSION}/${NEW_VERSION}/gm" ${{ env.DEPLOYMENT_FILE_PATH }}
+
+      - id: push_changes_to_repository
+        name: Push changes to repository
+        run: |
+          git add ${{ env.DEPLOYMENT_FILE_PATH }}
+
+          git config user.name "${{ env.ACTOR_NAME }}"
+
+          git config user.email "${{ env.ACTOR_EMAIL }}"
+
+          git commit -am ${{ env.COMMIT_MESSAGE }}
+
+          git push

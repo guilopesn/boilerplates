@@ -7,3 +7,4 @@
 ## Manifests
 
 1.  [Docker](./docker/README.md)
+2.  [GIT](./git/README.md)
