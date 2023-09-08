@@ -1,0 +1,29 @@
+version: "1"
+name: postgresql-cluster
+
+services:
+  postgresql-master:
+    image: docker.io/bitnami/postgresql:13
+    hostname: postgresql-master
+    env_file: .env-master
+    ports:
+      - 5432:5432
+    volumes:
+      - postgresql_master_data:/bitnami/postgresql
+
+  postgresql-slave:
+    image: docker.io/bitnami/postgresql:13
+    hostname: postgresql-slave
+    env_file: .env-slave
+    ports:
+      - 5433:5432
+    volumes:
+      - postgresql_slave_data:/bitnami/postgresql
+    depends_on:
+      - postgresql-master
+
+volumes:
+  postgresql_master_data:
+    driver: local
+  postgresql_slave_data:
+    driver: local

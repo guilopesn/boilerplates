@@ -6,7 +6,7 @@
 
 ## Boilerplates
 
-1. [Kubernetes Manifests](https://github.com/guilopesn/boilerplates/blob/master/k8s/README.md)
+1. [Docker Compose Manifests](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/README.md)
 
 ## Stay in touch
 
