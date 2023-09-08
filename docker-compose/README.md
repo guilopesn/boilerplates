@@ -8,18 +8,18 @@
 
 - PostgreSQL
 
-  1.  [Standalone](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/postgresql)
-  2.  [Cluster](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/postgresql-cluster)
+  1.  [Standalone](./postgresql)
+  2.  [Cluster](./postgresql-cluster)
 
 - RabbitMQ
 
-  1.  [Standalone](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/rabbitmq)
-  2.  [Cluster](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/rabbitmq-cluster)
+  1.  [Standalone](./rabbitmq)
+  2.  [Cluster](./rabbitmq-cluster)
 
 - Redis
 
-  1.  [Standalone](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/redis)
-  2.  [Cluster](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/redis-cluster)
+  1.  [Standalone](./redis)
+  2.  [Cluster](./redis-cluster)
 
 ## How to use
 
