@@ -6,15 +6,20 @@
 
 ## Manifests
 
-1. PostgreSQL
-   1.1. [Standalone](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/postgresql)
-   1.2. [Cluster](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/postgresql-cluster)
-2. RabbitMQ
-   2.1. [Standalone](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/rabbitmq)
-   2.2. [Cluster](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/rabbitmq-cluster)
-3. Redis
-   3.1. [Standalone](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/redis)
-   3.2. [Cluster](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/redis-cluster)
+- PostgreSQL
+
+  1.  [Standalone](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/postgresql)
+  2.  [Cluster](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/postgresql-cluster)
+
+- RabbitMQ
+
+  1.  [Standalone](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/rabbitmq)
+  2.  [Cluster](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/rabbitmq-cluster)
+
+- Redis
+
+  1.  [Standalone](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/redis)
+  2.  [Cluster](https://github.com/guilopesn/boilerplates/blob/master/docker-compose/redis-cluster)
 
 ## How to use
 
