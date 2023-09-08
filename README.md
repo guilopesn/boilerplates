@@ -15,4 +15,4 @@
 
 ## License
 
-Boilerplates is licensed by [MIT](LICENSE).
+Boilerplates is licensed under [MIT](LICENSE).
