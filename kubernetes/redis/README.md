@@ -7,5 +7,5 @@ All environments are in configmap.yaml file.
 ## How to use
 
 ```bash
-    kubectl apply -n ${NAMESPACE} -f .
+kubectl apply -n ${NAMESPACE} -f .
 ```
