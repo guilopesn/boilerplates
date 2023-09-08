@@ -8,11 +8,11 @@
 
 - PostgreSQL
 
-  1. [Standalone](https://github.com/guilopesn/boilerplates/blob/master/kubernetes/postgresql)
+  1. [Standalone](./postgresql)
 
 - Redis
 
-  1. [Standalone](https://github.com/guilopesn/boilerplates/blob/master/kubernetes/redis)
+  1. [Standalone](./redis)
 
 ## How to use
 
