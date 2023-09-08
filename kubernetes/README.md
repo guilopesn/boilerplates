@@ -10,6 +10,10 @@
 
   1. [Standalone](https://github.com/guilopesn/boilerplates/blob/master/kubernetes/postgresql)
 
+- Redis
+
+  1. [Standalone](https://github.com/guilopesn/boilerplates/blob/master/kubernetes/redis)
+
 ## How to use
 
 ```bash

@@ -1,10 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: redis
   labels:
     app: redis
-  name: redis
-  namespace: dev
 spec:
   replicas: 1
   selector:
@@ -21,14 +20,24 @@ spec:
         app: redis
     spec:
       volumes:
-        - name: redis-claim0
+        - name: redis-pvc
           persistentVolumeClaim:
-            claimName: redis-claim0
+            claimName: redis-pvc
       restartPolicy: Always
       containers:
         - name: redis
-          image: redis
+          image: bitnami/redis:7
           imagePullPolicy: Always
+          envFrom:
+          - configMapRef:
+              name: redis-cm
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 400m
+              memory: 1024Mi
           ports:
             - containerPort: 6379
           startupProbe:
@@ -54,5 +63,5 @@ spec:
             tcpSocket: 
               port: 6379
           volumeMounts:
-            - name: redis-claim0
+            - name: redis-pvc
               mountPath: /data

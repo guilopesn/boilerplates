@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  name: postgresql-cm
   labels:
     app: postgresql
-  name: postgresql-cm
 data:
   TZ: "America/Sao_Paulo"
   PGTZ: "America/Sao_Paulo"
