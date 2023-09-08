@@ -8,14 +8,8 @@
 
 - PostgreSQL
 
-  1. [Standalone](./postgresql)
+  1. [Standalone](./postgresql/README.md)
 
 - Redis
 
-  1. [Standalone](./redis)
-
-## How to use
-
-```bash
-    kubectl apply -n ${NAMESPACE} -f ${MANIFEST}
-```
+  1. [Standalone](./redis/README.md)

@@ -8,23 +8,15 @@
 
 - PostgreSQL
 
-  1.  [Standalone](./postgresql)
-  2.  [Cluster](./postgresql-cluster)
+  1.  [Standalone](./postgresql/README.md)
+  2.  [Cluster](./postgresql-cluster/README.md)
 
 - RabbitMQ
 
-  1.  [Standalone](./rabbitmq)
-  2.  [Cluster](./rabbitmq-cluster)
+  1.  [Standalone](./rabbitmq/README.md)
+  2.  [Cluster](./rabbitmq-cluster/README.md)
 
 - Redis
 
-  1.  [Standalone](./redis)
-  2.  [Cluster](./redis-cluster)
-
-## How to use
-
-```bash
-    cd ${MANIFEST}
-
-    docker compose up -d
-```
+  1.  [Standalone](./redis/README.md)
+  2.  [Cluster](./redis-cluster/README.md)
