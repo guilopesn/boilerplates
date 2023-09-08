@@ -7,7 +7,8 @@
 ## Boilerplates
 
 1. [Docker Compose Manifests](./docker-compose/README.md)
-2. [Kubernetes Manifests](./kubernetes/README.md)
+2. [GitHub Actions Manifests](./github-actions/README.md)
+3. [Kubernetes Manifests](./kubernetes/README.md)
 
 ## Stay in touch
 

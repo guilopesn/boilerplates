@@ -1,0 +1,61 @@
+name: Build Image and Publish to Registry
+
+on:
+  push:
+    tags:
+
+jobs:
+  build_and_publish:
+    name: Build Image and Publish to Registry
+    runs-on: ubuntu-latest
+    env:
+      REGISTRY: ghcr.io
+      REGISTRY_USER: ${{ github.actor }}
+      REGISTRY_PASS: ${{ secrets.GITHUB_TOKEN }}
+      IMAGE_ORG: ${{ github.event.repository.owner.login }}
+      PROJECT_NAME: ${{ github.event.repository.name }}
+      IMAGE_NAME: api
+    steps:
+      - id: checkout_repository
+        name: Checkout repository
+        uses: actions/checkout@v2
+
+      - id: build_image
+        name: Build image
+        run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}
+
+      - id: authenticate_on_registry
+        name: Authenticate on registry
+        run: echo "${{ env.REGISTRY_PASS }}" | docker login ${{ env.REGISTRY }} -u ${{ env.REGISTRY_USER }} --password-stdin
+
+      - id: get_version
+        name: Get image version
+        run: echo ::set-output name=value::${GITHUB_REF#refs/tags/}
+
+      - id: push_image_to_registry
+        name: Push image to registry
+        run: |
+          IMAGE_ID=${{ env.REGISTRY }}/${{ env.IMAGE_ORG }}/${{ env.PROJECT_NAME }}/${{ env.IMAGE_NAME }}
+
+          # Changes all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          VERSION=v${{ steps.get_version.outputs.value }}
+
+          docker tag ${{ env.IMAGE_NAME }} $IMAGE_ID:$VERSION
+
+          docker push $IMAGE_ID:$VERSION
+
+          # Adds stable tag to image
+          VERSION=stable
+
+          docker tag ${{ env.IMAGE_NAME }} $IMAGE_ID:$VERSION
+
+          docker push $IMAGE_ID:$VERSION
+
+          # Adds latest tag to image
+          VERSION=latest
+
+          docker tag ${{ env.IMAGE_NAME }} $IMAGE_ID:$VERSION
+
+          docker push $IMAGE_ID:$VERSION
