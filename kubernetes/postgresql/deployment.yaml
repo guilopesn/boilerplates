@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql
+  labels:
+    app: postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgresql
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: postgresql
+    spec:
+      volumes:
+      - name: postgresql-pvc
+        persistentVolumeClaim:
+          claimName: postgresql-pvc
+      restartPolicy: Always
+      containers:
+        - name: postgresql
+          image: bitnami/postgresql:13
+          imagePullPolicy: IfNotPresent
+          envFrom:
+          - configMapRef:
+              name: postgresql-cm
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            limits:
+              cpu: 1000m
+              memory: 5120Mi
+          ports:
+            - containerPort: 5432
+          startupProbe:
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 10
+            tcpSocket: 
+              port: 5432
+          readinessProbe:
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+            tcpSocket: 
+              port: 5432
+          livenessProbe:
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+            tcpSocket: 
+              port: 5432
+          volumeMounts:
+            - name: postgresql-pvc
+              mountPath: /var/lib/postgresql/data

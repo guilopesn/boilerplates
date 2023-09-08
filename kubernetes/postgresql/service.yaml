@@ -1,10 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
+  name: postgresql-svc
   labels:
     app: postgresql
-  name: postgresql
-  namespace: dev
 spec:
   ports:
     - name: postgresql
