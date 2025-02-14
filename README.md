@@ -9,6 +9,7 @@
 1. [Docker Compose Manifests](./docker-compose/README.md)
 2. [GitHub Actions Manifests](./github-actions/README.md)
 3. [Kubernetes Manifests](./kubernetes/README.md)
+4. [Linux Scripts](./linux-scripts/README.md)
 
 ## Stay in touch
 
